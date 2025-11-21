@@ -1,5 +1,6 @@
 ---
 source: wgsl_to_wgpu/src/structs.rs
+assertion_line: 374
 ---
 pub const ENTRY_MAIN: &str = "main";
 #[derive(Debug)]
@@ -64,6 +65,19 @@ const _: () = assert!(
     std::mem::offset_of!(Atomics, numi) == 4,
     "offset of Atomics.numi does not match WGSL"
 );
+impl Atomics {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 #[repr(C)]
 #[derive(
     Debug, Copy, Clone, PartialEq, bytemuck :: Pod, bytemuck :: Zeroable, encase :: ShaderType,
@@ -119,6 +133,19 @@ const _: () = assert!(
     std::mem::offset_of!(MatricesF16, i) == 176,
     "offset of MatricesF16.i does not match WGSL"
 );
+impl MatricesF16 {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 #[repr(C)]
 #[derive(
     Debug, Copy, Clone, PartialEq, bytemuck :: Pod, bytemuck :: Zeroable, encase :: ShaderType,
@@ -174,6 +201,19 @@ const _: () = assert!(
     std::mem::offset_of!(MatricesF32, i) == 352,
     "offset of MatricesF32.i does not match WGSL"
 );
+impl MatricesF32 {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 #[repr(C)]
 #[derive(
     Debug, Copy, Clone, PartialEq, bytemuck :: Pod, bytemuck :: Zeroable, encase :: ShaderType,
@@ -229,6 +269,19 @@ const _: () = assert!(
     std::mem::offset_of!(MatricesF64, i) == 704,
     "offset of MatricesF64.i does not match WGSL"
 );
+impl MatricesF64 {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 #[repr(C)]
 #[derive(
     Debug, Copy, Clone, PartialEq, bytemuck :: Pod, bytemuck :: Zeroable, encase :: ShaderType,
@@ -249,6 +302,19 @@ const _: () = assert!(
     std::mem::offset_of!(Nested, b) == 384,
     "offset of Nested.b does not match WGSL"
 );
+impl Nested {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 #[repr(C)]
 #[derive(
     Debug, Copy, Clone, PartialEq, bytemuck :: Pod, bytemuck :: Zeroable, encase :: ShaderType,
@@ -279,6 +345,19 @@ const _: () = assert!(
     std::mem::offset_of!(Scalars, d) == 12,
     "offset of Scalars.d does not match WGSL"
 );
+impl Scalars {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 #[repr(C)]
 #[derive(
     Debug, Copy, Clone, PartialEq, bytemuck :: Pod, bytemuck :: Zeroable, encase :: ShaderType,
@@ -304,6 +383,19 @@ const _: () = assert!(
     std::mem::offset_of!(StaticArrays, c) == 32,
     "offset of StaticArrays.c does not match WGSL"
 );
+impl StaticArrays {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 #[repr(C)]
 #[derive(
     Debug, Copy, Clone, PartialEq, bytemuck :: Pod, bytemuck :: Zeroable, encase :: ShaderType,
@@ -324,6 +416,19 @@ const _: () = assert!(
     std::mem::offset_of!(VectorsF16, b) == 8,
     "offset of VectorsF16.b does not match WGSL"
 );
+impl VectorsF16 {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 #[repr(C)]
 #[derive(
     Debug, Copy, Clone, PartialEq, bytemuck :: Pod, bytemuck :: Zeroable, encase :: ShaderType,
@@ -349,6 +454,19 @@ const _: () = assert!(
     std::mem::offset_of!(VectorsF32, c) == 32,
     "offset of VectorsF32.c does not match WGSL"
 );
+impl VectorsF32 {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 #[repr(C)]
 #[derive(
     Debug, Copy, Clone, PartialEq, bytemuck :: Pod, bytemuck :: Zeroable, encase :: ShaderType,
@@ -374,6 +492,19 @@ const _: () = assert!(
     std::mem::offset_of!(VectorsF64, c) == 64,
     "offset of VectorsF64.c does not match WGSL"
 );
+impl VectorsF64 {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 #[repr(C)]
 #[derive(
     Debug, Copy, Clone, PartialEq, bytemuck :: Pod, bytemuck :: Zeroable, encase :: ShaderType,
@@ -399,6 +530,19 @@ const _: () = assert!(
     std::mem::offset_of!(VectorsI32, c) == 32,
     "offset of VectorsI32.c does not match WGSL"
 );
+impl VectorsI32 {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 #[repr(C)]
 #[derive(
     Debug, Copy, Clone, PartialEq, bytemuck :: Pod, bytemuck :: Zeroable, encase :: ShaderType,
@@ -424,3 +568,16 @@ const _: () = assert!(
     std::mem::offset_of!(VectorsU32, c) == 32,
     "offset of VectorsU32.c does not match WGSL"
 );
+impl VectorsU32 {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}

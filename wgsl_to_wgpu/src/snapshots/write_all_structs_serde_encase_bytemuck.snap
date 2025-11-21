@@ -1,5 +1,6 @@
 ---
 source: wgsl_to_wgpu/src/structs.rs
+assertion_line: 393
 ---
 pub mod compute {
     pub const MAIN_WORKGROUP_SIZE: [u32; 3] = [64, 1, 1];
@@ -65,6 +66,19 @@ const _: () = assert!(
     std::mem::offset_of!(Input0, c) == 8,
     "offset of Input0.c does not match WGSL"
 );
+impl Input0 {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 #[repr(C)]
 #[derive(
     Debug,
@@ -93,3 +107,16 @@ const _: () = assert!(
     std::mem::offset_of!(Nested, b) == 12,
     "offset of Nested.b does not match WGSL"
 );
+impl Nested {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}

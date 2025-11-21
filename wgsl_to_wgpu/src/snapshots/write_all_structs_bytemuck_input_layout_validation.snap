@@ -1,5 +1,6 @@
 ---
 source: wgsl_to_wgpu/src/structs.rs
+assertion_line: 560
 ---
 pub const ENTRY_MAIN: &str = "main";
 #[derive(Debug)]
@@ -57,6 +58,19 @@ const _: () = assert!(
     std::mem::offset_of!(Inner, a) == 0,
     "offset of Inner.a does not match WGSL"
 );
+impl Inner {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone, PartialEq, bytemuck :: Pod, bytemuck :: Zeroable)]
 pub struct Input0 {
@@ -80,6 +94,19 @@ const _: () = assert!(
     std::mem::offset_of!(Input0, c) == 32,
     "offset of Input0.c does not match WGSL"
 );
+impl Input0 {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}
 impl Input0 {
     pub const VERTEX_ATTRIBUTES: [wgpu::VertexAttribute; 3] = [
         wgpu::VertexAttribute {
@@ -121,3 +148,16 @@ const _: () = assert!(
     std::mem::offset_of!(Outer, inner) == 0,
     "offset of Outer.inner does not match WGSL"
 );
+impl Outer {
+    pub fn create_buffer_init(
+        &self,
+        device: &wgpu::Device,
+        usage: wgpu::BufferUsages,
+    ) -> wgpu::Buffer {
+        device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some(name),
+            contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+            usage,
+        })
+    }
+}

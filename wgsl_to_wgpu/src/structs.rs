@@ -177,6 +177,27 @@ where
         quote!()
     };
 
+    let create_buffer = if options.derive_bytemuck_host_shareable && is_host_shareable {
+        // Helpers for creating the buffers
+        quote! {
+            impl #struct_name {
+                pub fn create_buffer_init(
+                    &self,
+                    device: &wgpu::Device,
+                    usage: wgpu::BufferUsages,
+                ) -> wgpu::Buffer {
+                    device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                        label: Some(name),
+                        contents: bytemuck::cast_slice(std::slice::from_ref(self)),
+                        usage,
+                    })
+                }
+            }
+        }
+    } else {
+        quote!()
+    };
+
     let repr_c = if !has_rts_array {
         quote!(#[repr(C)])
     } else {
@@ -189,6 +210,7 @@ where
             #(#members),*
         }
         #assert_layout
+        #create_buffer
     }
 }
 
