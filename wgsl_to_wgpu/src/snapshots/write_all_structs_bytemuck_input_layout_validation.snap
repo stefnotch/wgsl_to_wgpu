@@ -65,7 +65,7 @@ impl Inner {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("Inner"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })
@@ -101,7 +101,7 @@ impl Input0 {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("Input0"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })
@@ -155,7 +155,7 @@ impl Outer {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("Outer"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })

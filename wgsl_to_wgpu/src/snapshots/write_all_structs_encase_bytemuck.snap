@@ -72,7 +72,7 @@ impl Atomics {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("Atomics"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })
@@ -140,7 +140,7 @@ impl MatricesF16 {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("MatricesF16"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })
@@ -208,7 +208,7 @@ impl MatricesF32 {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("MatricesF32"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })
@@ -276,7 +276,7 @@ impl MatricesF64 {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("MatricesF64"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })
@@ -309,7 +309,7 @@ impl Nested {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("Nested"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })
@@ -352,7 +352,7 @@ impl Scalars {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("Scalars"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })
@@ -390,7 +390,7 @@ impl StaticArrays {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("StaticArrays"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })
@@ -423,7 +423,7 @@ impl VectorsF16 {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("VectorsF16"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })
@@ -461,7 +461,7 @@ impl VectorsF32 {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("VectorsF32"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })
@@ -499,7 +499,7 @@ impl VectorsF64 {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("VectorsF64"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })
@@ -537,7 +537,7 @@ impl VectorsI32 {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("VectorsI32"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })
@@ -575,7 +575,7 @@ impl VectorsU32 {
         usage: wgpu::BufferUsages,
     ) -> wgpu::Buffer {
         device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some(name),
+            label: Some("VectorsU32"),
             contents: bytemuck::cast_slice(std::slice::from_ref(self)),
             usage,
         })

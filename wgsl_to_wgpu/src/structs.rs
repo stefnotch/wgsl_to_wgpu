@@ -187,7 +187,7 @@ where
                     usage: wgpu::BufferUsages,
                 ) -> wgpu::Buffer {
                     device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                        label: Some(name),
+                        label: Some(#name),
                         contents: bytemuck::cast_slice(std::slice::from_ref(self)),
                         usage,
                     })
