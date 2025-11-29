@@ -174,6 +174,7 @@ fn binding_field_type(
         | naga::TypeInner::Array { .. }
         | naga::TypeInner::Scalar { .. }
         | naga::TypeInner::Vector { .. }
+        | naga::TypeInner::Atomic(..)
         | naga::TypeInner::Matrix { .. } => quote!(wgpu::BufferBinding<'a>),
         naga::TypeInner::Image { .. } => quote!(&'a wgpu::TextureView),
         naga::TypeInner::Sampler { .. } => quote!(&'a wgpu::Sampler),
@@ -254,6 +255,7 @@ fn binding_ty_count(
         | naga::TypeInner::Array { .. }
         | naga::TypeInner::Scalar { .. }
         | naga::TypeInner::Vector { .. }
+        | naga::TypeInner::Atomic(..)
         | naga::TypeInner::Matrix { .. } => (
             quote!(wgpu::BindingType::Buffer {
                 ty: #buffer_binding_type,
@@ -435,6 +437,7 @@ fn resource_ty(
         | naga::TypeInner::Array { .. }
         | naga::TypeInner::Scalar { .. }
         | naga::TypeInner::Vector { .. }
+        | naga::TypeInner::Atomic(..)
         | naga::TypeInner::Matrix { .. } => {
             quote!(wgpu::BindingResource::Buffer(bindings.#field_name))
         }
